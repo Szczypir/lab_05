@@ -14,5 +14,11 @@ public class Main {
         MainFrame frame = new MainFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+		Bridge bridge = new Bridge();
+		Vehicle vehicle = new Vehicle("V", 1000, bridge, 0);
+		Barge barge = new Barge("B", 3000, bridge, 0);
+		vehicle.start();
+		barge.start();
 	}
+	
 }

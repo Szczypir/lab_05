@@ -6,8 +6,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = -471574893774892319L;
@@ -48,65 +55,68 @@ public class MainFrame extends JFrame {
 		btnNewButton_1.setBounds(10, 60, 85, 21);
 		contentPane.add(btnNewButton_1);
 		
-		JPanel p = new JPanel();
-		p.setBounds(105, 10, 85, 71);
-		contentPane.add(p);
-		p.setLayout(new GridLayout(5, 5, 0, 0));
+		JPanel north = new JPanel();
+		north.setBorder(new LineBorder(new Color(0, 0, 0)));
+		north.setBounds(105, 10, 121, 21);
+		contentPane.add(north);
+		north.setLayout(new GridLayout(1, 4, 0, 0));
 		
-		JLabel l11 = new JLabel("-");
-		JLabel l12 = new JLabel("-");
-		JLabel l13 = new JLabel("-");
-		JLabel l14 = new JLabel("-");
-		JLabel l15 = new JLabel("-");
-		JLabel l21 = new JLabel("~~");
-		JLabel l22 = new JLabel("~~");
-		JLabel l23 = new JLabel("[ ]");
-		JLabel l24 = new JLabel("~~");
-		JLabel l25 = new JLabel("~~");
-		JLabel l31 = new JLabel("~~");
-		JLabel l32 = new JLabel("~~");
-		JLabel l33 = new JLabel("[ ]");
-		JLabel l34 = new JLabel("~~");
-		JLabel l35 = new JLabel("~~");
-		JLabel l41 = new JLabel("~~");
-		JLabel l42 = new JLabel("~~");
-		JLabel l43 = new JLabel("[ ]");
-		JLabel l44 = new JLabel("~~");
-		JLabel l45 = new JLabel("~~");
-		JLabel l51 = new JLabel("-");
-		JLabel l52 = new JLabel("-");
-		JLabel l53 = new JLabel("-");
-		JLabel l54 = new JLabel("-");
-		JLabel l55 = new JLabel("-");
-		l11.setHorizontalAlignment(SwingConstants.CENTER);
-		l12.setHorizontalAlignment(SwingConstants.CENTER);
-		l13.setHorizontalAlignment(SwingConstants.CENTER);
-		l14.setHorizontalAlignment(SwingConstants.CENTER);
-		l15.setHorizontalAlignment(SwingConstants.CENTER);
-		l21.setHorizontalAlignment(SwingConstants.CENTER);
-		l22.setHorizontalAlignment(SwingConstants.CENTER);
-		l23.setHorizontalAlignment(SwingConstants.CENTER);
-		l24.setHorizontalAlignment(SwingConstants.CENTER);
-		l25.setHorizontalAlignment(SwingConstants.CENTER);
-		l31.setHorizontalAlignment(SwingConstants.CENTER);
-		l32.setHorizontalAlignment(SwingConstants.CENTER);
-		l33.setHorizontalAlignment(SwingConstants.CENTER);
-		l34.setHorizontalAlignment(SwingConstants.CENTER);
-		l35.setHorizontalAlignment(SwingConstants.CENTER);
-		l41.setHorizontalAlignment(SwingConstants.CENTER);
-		l42.setHorizontalAlignment(SwingConstants.CENTER);
-		l43.setHorizontalAlignment(SwingConstants.CENTER);
-		l44.setHorizontalAlignment(SwingConstants.CENTER);
-		l45.setHorizontalAlignment(SwingConstants.CENTER);
-		l51.setHorizontalAlignment(SwingConstants.CENTER);
-		l52.setHorizontalAlignment(SwingConstants.CENTER);
-		l53.setHorizontalAlignment(SwingConstants.CENTER);
-		l54.setHorizontalAlignment(SwingConstants.CENTER);
-		l55.setHorizontalAlignment(SwingConstants.CENTER);
-		p.add(l11); p.add(l12); p.add(l13); p.add(l14); p.add(l15);
-		p.add(l21); p.add(l22); p.add(l23); p.add(l24); p.add(l25);
-		p.add(l31); p.add(l32); p.add(l33); p.add(l34); p.add(l35);
-		p.add(l41); p.add(l42); p.add(l43); p.add(l44); p.add(l45);
-		p.add(l51); p.add(l52); p.add(l53); p.add(l54); p.add(l55);
+		JPanel south = new JPanel();
+		south.setBorder(new LineBorder(new Color(0, 0, 0)));
+		south.setBounds(105, 82, 121, 21);
+		contentPane.add(south);
+		south.setLayout(new GridLayout(1, 4, 0, 0));
+		
+		JPanel west = new JPanel();
+		west.setBorder(new LineBorder(new Color(0, 0, 0)));
+		west.setBounds(105, 32, 34, 49);
+		contentPane.add(west);
+		west.setLayout(new GridLayout(4, 1, 0, 0));
+		
+		JPanel east = new JPanel();
+		east.setBorder(new LineBorder(new Color(0, 0, 0)));
+		east.setBounds(192, 32, 34, 49);
+		contentPane.add(east);
+		east.setLayout(new GridLayout(4, 1, 0, 0));
+		
+		JPanel bridge = new JPanel();
+		bridge.setBorder(new LineBorder(new Color(0, 0, 0)));
+		bridge.setBounds(149, 32, 34, 49);
+		bridge.setLayout(new GridLayout(3, 1, 0, 0));
+		
+		contentPane.add(bridge);
+		List<List<JLabel>> labels = new ArrayList();
+		for(int i=0; i<5; i++) {
+			labels.add(new ArrayList());
+		}
+		for(int i=0; i<4; i++) {
+			labels.get(0).add(new JLabel("-"));
+			labels.get(1).add(new JLabel("-"));
+			labels.get(2).add(new JLabel("-"));
+			labels.get(3).add(new JLabel("-"));
+		}
+		for(int i=0;i<3;i++) {
+			labels.get(4).add(new JLabel("[ ]"));
+		}
+		for(JLabel label : labels.get(0)) {
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			north.add(label);
+		}
+		for(JLabel label : labels.get(1)) {
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			south.add(label);
+		}
+		for(JLabel label : labels.get(2)) {
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			east.add(label);
+		}
+		for(JLabel label : labels.get(3)) {
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			west.add(label);
+		}
+		for(JLabel label : labels.get(4)) {
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			bridge.add(label);
+		}
 	}
 }
