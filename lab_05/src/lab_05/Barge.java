@@ -1,16 +1,26 @@
 package lab_05;
 
+
 public class Barge extends MyThread{
 	private int position; //0-WEST, 1-EAST
-
-	public Barge(String name, int time, Bridge bridge, int position) {
+	private int place;
+	private Frame frame;
+	public Barge(String name, int time, Bridge bridge, int position, Frame frame, int place) {
 		super(name, time, bridge);
+		this.place = place;
+		this.frame = frame;
 		if (position == 0 || position == 1){
-			this.position = position;
 		}
 		else {
 			throw new IllegalArgumentException("Illegal position");
 		}
+		frame.setText(this.getPosition()*4+8+this.getPlace(), this.getName());
+	}
+	public int getPlace() {
+		return place;
+	}
+	public void setPlace(int place) {
+		this.place = place;
 	}
 	public int getPosition() {
 		return position;
@@ -26,28 +36,33 @@ public class Barge extends MyThread{
 	}
 	
 	public void swim() {
-		try{ 
-  			sleep(5*time+(int)(Math.random()*100));
-  			} catch(InterruptedException e) {
-  				System.err.println("Przerwano watek");
-  			  }
+		frame.setText(this.getPosition()*4+8+this.getPlace(), "-");
+		frame.setText(17, this.getName());
 		if (this.getPosition() == 0){
 			this.setPosition(1);
 		}
 		else {
 			this.setPosition(0);
 		}
+		try{
+  			sleep(time+(int)(Math.random()*100));
+  			} catch(InterruptedException e) {
+  				System.err.println("Przerwano watek");
+  			  }
+		frame.setText(17, "[ ]");
 	}
 	
-	public void run() {                  
+	public void run() {  
+		int place = 0;
     	while (run) {        
-      		try{ 
+      		try{
       			sleep(time+(int)(Math.random()*100));
       			} catch(InterruptedException e) {
       				System.err.println("Przerwano watek");
       			  }
-			bridge.swim(this);
-			System.out.println(this.getName()+" is now in "+this.getPosition());
+      		this.setName(this.getName().toUpperCase());
+    		frame.setText(this.getPosition()*4+8+this.getPlace(), this.getName());
+			bridge.swim(this, place);
       		try{ 
       			sleep(time+(int)(Math.random()*100));
       			} catch(InterruptedException e) {
